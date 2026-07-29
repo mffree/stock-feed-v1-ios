@@ -28,10 +28,9 @@ enum APIError: LocalizedError {
 }
 
 class APIClient {
-    // WARNING: This is plain HTTP for local development only!
-    // Replace with HTTPS URL before production deployment.
-    // Requires App Transport Security exception in Info.plist.
-    private let baseURL = "http://localhost:8000"
+    // Production backend deployed on Render
+    // Using HTTPS - no App Transport Security exceptions needed!
+    private let baseURL = "https://stock-feed-v1-api.onrender.com"
     
     private let session: URLSession
     
