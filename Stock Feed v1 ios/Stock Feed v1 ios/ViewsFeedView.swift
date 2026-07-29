@@ -66,6 +66,23 @@ struct FeedView: View {
                                 StockPostCard(post: post)
                                     .padding(.horizontal, 16)
                             }
+                            
+                            // Refresh button after all cards
+                            Button {
+                                Task {
+                                    await viewModel.refresh()
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "arrow.clockwise")
+                                    Text("Refresh")
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 14)
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 8)
                         }
                         .padding(.vertical, 16)
                     }
