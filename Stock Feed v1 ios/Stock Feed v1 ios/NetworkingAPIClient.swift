@@ -30,7 +30,7 @@ enum APIError: LocalizedError {
 class APIClient {
     // Production backend deployed on Render
     // Using HTTPS - no App Transport Security exceptions needed!
-    private let baseURL = "https://stock-feed-v1-api.onrender.com"
+    private let baseURL = "https://stock-feed-v1-backend.onrender.com"
     
     private let session: URLSession
     
