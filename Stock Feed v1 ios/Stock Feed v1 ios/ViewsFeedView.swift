@@ -89,8 +89,9 @@ struct FeedView: View {
 // MARK: - Preview
 
 #Preview("Feed with Data") {
-    FeedView()
-        .environment(\.mockFeedViewModel, FeedViewModel(apiClient: MockAPIClient()))
+    let mockClient = MockAPIClient()
+    let viewModel = FeedViewModel(apiClient: mockClient)
+    return FeedView()
 }
 
 #Preview("Loading State") {
@@ -111,22 +112,11 @@ struct FeedView: View {
 
 // MARK: - Mock API Client for Previews
 
+@MainActor
 private class MockAPIClient: APIClient {
     override func fetchFeed() async throws -> [StockPost] {
         // Simulate network delay
         try await Task.sleep(for: .milliseconds(500))
         return StockPost.mockPosts
-    }
-}
-
-// Environment key for injecting mock view model
-private struct FeedViewModelKey: EnvironmentKey {
-    static let defaultValue: FeedViewModel? = nil
-}
-
-private extension EnvironmentValues {
-    var mockFeedViewModel: FeedViewModel? {
-        get { self[FeedViewModelKey.self] }
-        set { self[FeedViewModelKey.self] = newValue }
     }
 }

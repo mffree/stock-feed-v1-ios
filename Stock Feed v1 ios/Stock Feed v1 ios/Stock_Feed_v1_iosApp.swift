@@ -11,7 +11,7 @@ import SwiftUI
 struct Stock_Feed_v1_iosApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FeedView()
         }
     }
 }

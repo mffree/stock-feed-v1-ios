@@ -27,7 +27,6 @@ enum APIError: LocalizedError {
     }
 }
 
-@MainActor
 class APIClient {
     // WARNING: This is plain HTTP for local development only!
     // Replace with HTTPS URL before production deployment.
