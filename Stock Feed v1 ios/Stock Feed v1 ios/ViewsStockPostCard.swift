@@ -28,6 +28,10 @@ struct StockPostCard: View {
         post.history.map(\.close).max() ?? 100
     }
     
+    private var midPrice: Double {
+        (minPrice + maxPrice) / 2
+    }
+    
     private func monthAbbreviation(from dateString: String) -> String {
         // Parse date string (format: "2025-07-28")
         let components = dateString.split(separator: "-")
@@ -92,7 +96,7 @@ struct StockPostCard: View {
                 }
             }
             .chartYAxis {
-                AxisMarks(position: .trailing) { value in
+                AxisMarks(position: .trailing, values: [minPrice, midPrice, maxPrice]) { value in
                     if let price = value.as(Double.self) {
                         AxisValueLabel {
                             Text("\(Int(price))")
