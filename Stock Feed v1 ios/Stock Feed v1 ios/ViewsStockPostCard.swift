@@ -84,7 +84,7 @@ struct StockPostCard: View {
                 }
             }
             .chartXAxis {
-                AxisMarks { value in
+                AxisMarks(preset: .aligned, values: [0, 17, 34, 51]) { value in
                     AxisValueLabel {
                         if let index = value.as(Int.self),
                            index >= 0 && index < post.history.count {
