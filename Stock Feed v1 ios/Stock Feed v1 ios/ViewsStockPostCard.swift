@@ -34,15 +34,15 @@ struct StockPostCard: View {
     
     private func monthAbbreviation(from dateString: String) -> String {
         // Parse date string (format: "2025-07-28")
-        let components = dateString.split(separator: "-")
-        guard components.count == 3,
-              let month = Int(components[1]) else {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let date = formatter.date(from: dateString) else {
             return ""
         }
         
-        let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        return monthNames[month - 1]
+        formatter.dateFormat = "MMM"
+        return formatter.string(from: date)
     }
     
     var body: some View {
@@ -84,10 +84,10 @@ struct StockPostCard: View {
                 }
             }
             .chartXAxis {
-                AxisMarks(values: [0, post.history.count - 1]) { value in
-                    if let index = value.as(Int.self),
-                       index >= 0 && index < post.history.count {
-                        AxisValueLabel {
+                AxisMarks { value in
+                    AxisValueLabel {
+                        if let index = value.as(Int.self),
+                           index >= 0 && index < post.history.count {
                             Text(monthAbbreviation(from: post.history[index].date))
                                 .font(.system(size: 12))
                                 .foregroundStyle(.secondary)
