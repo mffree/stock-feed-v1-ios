@@ -16,7 +16,7 @@ class FeedViewModel {
     
     private let apiClient: APIClient
     
-    init(apiClient: APIClient = APIClient()) {
+    nonisolated init(apiClient: APIClient = APIClient()) {
         self.apiClient = apiClient
     }
     
