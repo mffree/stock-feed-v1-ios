@@ -84,7 +84,7 @@ struct StockPostCard: View {
                 }
             }
             .chartXAxis {
-                AxisMarks(preset: .aligned) { value in
+                AxisMarks { value in
                     AxisValueLabel {
                         if let index = value.as(Int.self),
                            index >= 0 && index < post.history.count {
@@ -135,7 +135,7 @@ struct StockPostCard: View {
         Color(.systemGroupedBackground)
             .ignoresSafeArea()
         
-        StockPostCard(post: .mockUptrend)
+        StockPostCard(post: .mock52WeekUptrend)
             .padding(.horizontal, 16)
     }
 }
@@ -145,7 +145,17 @@ struct StockPostCard: View {
         Color(.systemGroupedBackground)
             .ignoresSafeArea()
         
-        StockPostCard(post: .mockDowntrend)
+        StockPostCard(post: .mock52WeekDowntrend)
+            .padding(.horizontal, 16)
+    }
+}
+
+#Preview("Single Card - Volatile") {
+    ZStack {
+        Color(.systemGroupedBackground)
+            .ignoresSafeArea()
+        
+        StockPostCard(post: .mock52WeekVolatile)
             .padding(.horizontal, 16)
     }
 }
